@@ -1,0 +1,53 @@
+﻿<html>
+<head>
+    <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    
+
+    <script>
+        angular.module("mymod", []).controller("myctrl", ctrl);
+        function ctrl($scope) {
+
+            $scope.products = ["apple", "banana", "mango"];
+            
+
+            $scope.removeitem = function (index) {
+                debugger;
+                $scope.products.splice(index, 1);
+
+                
+            }
+            $scope.additem = function () {
+                $scope.errormsg = "";
+                if (!$scope.item) { return }
+                if ($scope.products.indexOf($scope.item) == -1) {
+                    $scope.products.push($scope.item);
+                    $scope.item = "";
+
+                }
+                else
+                {
+                    $scope.errormsg = "already item exists"
+
+                }
+                
+
+            }
+
+             };
+       
+
+    </script>
+</head>
+<body ng-app="mymod" ng-controller="myctrl">
+    <ul>
+        <li ng-repeat="x in products">{{x}} <span ng-click="removeitem($index)">X</span></li>
+
+    </ul>
+
+    <input  ng-model="item" />
+    <button ng-click="additem()">Add</button><h1>{{errormsg}}</h1>
+</body>
+
+</html>
